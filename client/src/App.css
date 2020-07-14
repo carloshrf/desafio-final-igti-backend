@@ -1,0 +1,25 @@
+.title {
+  margin: 0; 
+  text-align: center;
+}
+
+.title h5 {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.title span {
+  font-size: 20px;
+}
+
+.filterBar {
+  display: flex;
+  height: 40px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.filterBar button {
+  align-items: center;
+  line-height: 18px;
+}

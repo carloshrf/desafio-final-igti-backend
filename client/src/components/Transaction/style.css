@@ -1,0 +1,58 @@
+.transaction-bar {
+  display: flex;
+  width: 80%;
+  height: 60px;
+  background: red;
+  border-radius: 5px;
+  margin: 15px auto;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  width: 60px;
+}
+
+.info {
+  display: block;
+  justify-content: center;
+  width: 70%;
+  line-height: 25px;
+  margin: 5px 0;
+}
+
+.type {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+.options {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.options button {
+  background: none;
+  border: none;
+}
+
+.options button:hover {
+  cursor: pointer;
+}
+
+.options img {
+  margin: 0 10px;
+}

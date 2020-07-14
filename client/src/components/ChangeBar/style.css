@@ -1,0 +1,16 @@
+.changeBar {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.bar {
+  width: 200px;
+  height: 40px;
+  margin: 0 10px;
+}
+
+.changeBar .btn {
+  height: 40px;
+  width: 40px;
+}
