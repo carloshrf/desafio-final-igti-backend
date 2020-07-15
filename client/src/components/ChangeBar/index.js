@@ -1,8 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const ChangeBar = () => {
-  
+const ChangeBar = ({ dates }) => {
 
   return (
     <div className="changeBar">
