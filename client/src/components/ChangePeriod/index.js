@@ -16,12 +16,10 @@ const ChangePeriod = ({ getTransactionsByDate, dates }) => {
     };
   });
 
-  console.log('aaaa')
-
   return (
     <div className="changeBar">
       {/* &lt; representa < já que ao usar retorna erro */}
-      <button className="btn">&lt;</button>
+      <button className="btn">{'<'}</button>
 
       <select className="browser-default bar" defaultValue="" onChange={getTransactionsByDate} >
 

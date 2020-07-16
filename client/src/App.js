@@ -9,6 +9,7 @@ import './App.css';
 export default function App() {
   const [transaction, setTransaction] = useState([]);
   const [date, setdate] = useState([]);
+  const [currentDate, setCurrentDate] = useState([]);
 
   const API_URL = 'http://localhost:3001/api/transaction';
 
@@ -34,7 +35,37 @@ export default function App() {
 
     const allTransactions = transactions.data.transactions;
     
+    setCurrentDate(period);
     setTransaction(allTransactions);
+  }
+
+  const filterTransactionsByDescription = async (event) => {
+    const filter = event.target.value;
+
+    if (filter !== '') {
+      const response = await axios.get(`${API_URL}/filter?value=${filter}`);
+
+      const transactions = response.data;
+
+      const filteredTransactions = [];
+
+      transactions.forEach(transact => {
+
+        if (!currentDate.length) {
+          filteredTransactions.push(transact);
+        } else {
+          const verified = transact.yearMonth === currentDate;
+
+          verified && filteredTransactions.push(transact);
+        }
+      });
+
+      setTransaction(filteredTransactions);
+    } else {
+      getTransactionsByDate({target:{value: currentDate}});
+    }
+    
+
   }
 
   const getAllUniqueDates = (transactions) => {
@@ -54,7 +85,12 @@ export default function App() {
       <InfoBar transaction={transaction}/>
       <div className="filterBar">
         <button className="btn">+ NOVO LANÇAMENTO</button>
-        <input style={{height: '36px', marginLeft: '10px'}} type="text" placeholder="Filtro" />
+        <input 
+          style={{height: '36px', marginLeft: '10px'}} 
+          type="text" 
+          placeholder="Filtro" 
+          onChange={filterTransactionsByDescription} 
+        />
       </div>
 
       {transaction.map(transact => {

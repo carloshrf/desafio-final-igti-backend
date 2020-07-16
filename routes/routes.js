@@ -35,12 +35,16 @@ transactionRouter.get('/filter', async (request, response) => {
   const transactions = await TransactionModel.find(
     {
       $text: {
-        $search: 'salario',
+        $search: value,
       }
     }
   );
 
-  return response.json({message: transactions});
+  // const transactions = await TransactionModel.find({
+  //   description: { $regex: new RegExp('salár'), $options: 'i'}
+  // });
+
+  return response.json(transactions);
 });
 
 transactionRouter.post('/', async (request, response) => {
