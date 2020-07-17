@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ChangePeriod from './components/ChangePeriod';
 import InfoBar from './components/InfoBar';
 import Transaction from './components/Transaction';
+import InsertModal from './components/InsertModal';
+
 import axios from 'axios';
 
 import './App.css';
@@ -10,6 +12,7 @@ export default function App() {
   const [transaction, setTransaction] = useState([]);
   const [date, setdate] = useState([]);
   const [currentDate, setCurrentDate] = useState([]);
+  const [modalVisibility, setModalVisibility] = useState(false);
 
   const API_URL = 'http://localhost:3001/api/transaction';
 
@@ -36,7 +39,9 @@ export default function App() {
     const allTransactions = transactions.data.transactions;
     
     setCurrentDate(period);
-    setTransaction(allTransactions);
+    setTransaction((allTransactions).sort((a, b) => {
+      return a.day - b.day;
+    }));
   }
 
   const filterTransactionsByDescription = async (event) => {
@@ -60,12 +65,13 @@ export default function App() {
         }
       });
 
-      setTransaction(filteredTransactions);
+      setTransaction((filteredTransactions).sort((a, b) => {
+        return a.day - b.day;
+      }));
     } else {
       getTransactionsByDate({target:{value: currentDate}});
     }
     
-
   }
 
   const getAllUniqueDates = (transactions) => {
@@ -75,16 +81,32 @@ export default function App() {
     setdate(uniqueDates);
   }
 
+  const changeModalVisibility = () => {
+    if (modalVisibility) {
+      setModalVisibility(false);
+    } else {
+      setModalVisibility(true);
+    }
+  }
+
   return (
     <>
       <div className="title">
         <h5>Bootcamp Full Stack - Desafio Final</h5>
         <span>Controle Financeiro Pessoal</span>
       </div>
+      
       <ChangePeriod getTransactionsByDate={getTransactionsByDate} dates={date} />
+      
       <InfoBar transaction={transaction}/>
+      
       <div className="filterBar">
-        <button className="btn">+ NOVO LANÇAMENTO</button>
+        <button className="btn" onClick={changeModalVisibility}>+ NOVO LANÇAMENTO</button>
+        <InsertModal 
+          changeModalVisibility={changeModalVisibility} 
+          isVisible={modalVisibility}
+          label='Inclusão de lançamento'
+        />
         <input 
           style={{height: '36px', marginLeft: '10px'}} 
           type="text" 

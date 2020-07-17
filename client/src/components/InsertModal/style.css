@@ -1,0 +1,49 @@
+input {
+  margin-top: 30px;
+}
+
+.container {
+  background: #f7f7f7;
+  position: fixed;
+  top: 15vh;
+  left: 70vh;
+  height: 70%;
+  width: 30%;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.header {
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.header span {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.inputs-container {
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 30px 10px 50px 10px;
+}
+
+.type-selection {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.value-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.value-date #value, #date {
+  width: 160px;
+}
