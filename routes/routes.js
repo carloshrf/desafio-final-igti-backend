@@ -47,6 +47,13 @@ transactionRouter.get('/filter', async (request, response) => {
   return response.json(transactions);
 });
 
+transactionRouter.delete('/deleteall', async (request, response) => {
+
+  await TransactionModel.deleteMany();
+
+  return response.json({message: 'Lançamento removido'});
+});
+
 transactionRouter.post('/', async (request, response) => {
   const {description, value, category, year, month, day, type} = request.body;
 
@@ -54,9 +61,9 @@ transactionRouter.post('/', async (request, response) => {
     description: Yup.string().required(),
     value: Yup.number().required().strict(),
     category: Yup.string().required(),
-    year: Yup.number().positive().integer().required().strict(),
-    month: Yup.number().positive().integer().required().strict(),
-    day: Yup.number().positive().integer().required().strict(),
+    year: Yup.number().positive().integer().required(),
+    month: Yup.number().positive().integer().required(),
+    day: Yup.number().positive().integer().required(),
     type: Yup.string().required(),
   });
 
@@ -99,9 +106,9 @@ transactionRouter.put('/:id', async (request, response) => {
     description: Yup.string().required(),
     value: Yup.number().required().strict(),
     category: Yup.string().required(),
-    year: Yup.number().positive().integer().required().strict(),
-    month: Yup.number().positive().integer().required().strict(),
-    day: Yup.number().positive().integer().required().strict(),
+    year: Yup.number().positive().integer().required(),
+    month: Yup.number().positive().integer().required(),
+    day: Yup.number().positive().integer().required(),
     type: Yup.string().required(),
   });
 

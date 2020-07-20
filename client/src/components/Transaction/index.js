@@ -4,9 +4,17 @@ import deleteImg from '../../assets/delete.svg';
 
 import './style.css';
 
-const Transaction = ({ transaction }) => {
+const Transaction = ({ transaction, changeUpdateModalVisibility, handleDeleteTransaction }) => {
   
   const backgroundColor = transaction.type === '-' ? '#ff737373' : '#a4f1a4f0';
+
+  const loadUpdateTransaction = () => {
+    changeUpdateModalVisibility(transaction);
+  }
+
+  const removeTransaction = () => {
+    handleDeleteTransaction(transaction._id);
+  }
 
   return (
     <div className="transaction-bar" style={{ background: backgroundColor }}>
@@ -20,8 +28,8 @@ const Transaction = ({ transaction }) => {
       <div className="value">R$ {transaction.value.toFixed(2)}</div>
       
       <div className="options">
-        <button><img src={editImg} alt="editIcon" /></button>
-        <button><img src={deleteImg} alt="deleteIcon" /></button>
+        <button><img src={editImg} alt="editIcon" onClick={loadUpdateTransaction}/></button>
+        <button><img src={deleteImg} alt="deleteIcon" onClick={removeTransaction} /></button>
       </div>
 
     </div>
