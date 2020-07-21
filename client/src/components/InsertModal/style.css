@@ -7,7 +7,7 @@ input {
   position: fixed;
   top: 15vh;
   left: 70vh;
-  height: 65%;
+  height: 70%;
   width: 30%;
   padding: 20px;
   border-radius: 8px;
@@ -34,10 +34,9 @@ input {
 }
 
 .type-selection {
-  margin: 0 auto 10px;
-  width: 65%;
+  margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .value-date {
@@ -47,8 +46,4 @@ input {
 
 .value-date #value, #date {
   width: 160px;
-}
-
-#save {
-  margin-top: 15px;
 }

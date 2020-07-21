@@ -59,6 +59,7 @@ transactionRouter.get('/filter', async (request, response) => {
   
 });
 
+<<<<<<< HEAD
 transactionRouter.delete('/deleteall', async (request, response) => {
   try {
     await TransactionModel.deleteMany();
@@ -87,6 +88,24 @@ transactionRouter.post('/', async (request, response) => {
     if (!(await schema.isValid({description, value, category, year, month, day, type}))) {
       return response.status(401).json({message: 'Data validation fails'});
     }
+=======
+transactionRouter.post('/', async (request, response) => {
+  const {description, value, category, year, month, day, type} = request.body;
+
+  const schema = Yup.object().shape({
+    description: Yup.string().required(),
+    value: Yup.number().required().strict(),
+    category: Yup.string().required(),
+    year: Yup.number().positive().integer().required().strict(),
+    month: Yup.number().positive().integer().required().strict(),
+    day: Yup.number().positive().integer().required().strict(),
+    type: Yup.string().required(),
+  });
+
+  if (!(await schema.isValid({description, value, category, year, month, day, type}))) {
+    return response.status(401).json({message: 'Data validation fails'});
+  }
+>>>>>>> parent of 2b6df84... modals insert e update
 
     const yearMonth = `${year}-${month}`; 
     const yearMonthDay = `${yearMonth}-${day}`;
@@ -124,6 +143,7 @@ transactionRouter.put('/:id', async (request, response) => {
 
     const {description, value, category, year, month, day, type} = request.body;
 
+<<<<<<< HEAD
     const schema = Yup.object().shape({
       description: Yup.string().required(),
       value: Yup.number().required().strict(),
@@ -133,6 +153,17 @@ transactionRouter.put('/:id', async (request, response) => {
       day: Yup.number().positive().integer().required(),
       type: Yup.string().required(),
     });
+=======
+  const schema = Yup.object().shape({
+    description: Yup.string().required(),
+    value: Yup.number().required().strict(),
+    category: Yup.string().required(),
+    year: Yup.number().positive().integer().required().strict(),
+    month: Yup.number().positive().integer().required().strict(),
+    day: Yup.number().positive().integer().required().strict(),
+    type: Yup.string().required(),
+  });
+>>>>>>> parent of 2b6df84... modals insert e update
 
     if (!(await schema.isValid({description, value, category, year, month, day, type}))) {
       return response.status(401).json({message: 'Data validation fails'});

@@ -37,10 +37,10 @@ const InfoBar = ({transaction}) => {
 
   return (
     <div className="statusBar">
-      <div><span>Lançamentos:</span> <span>{lancamentos}</span></div>
-      <div><span>Receitas:</span> <span style={{color: 'green'}}>{receitas}</span></div>
-      <div><span>Despesas:</span> <span style={{color: 'red'}}>{despesas}</span></div>
-      <div><span>Saldo:</span> <span style={{color: 'green'}}>{saldo}</span></div>
+      <div><span>Lançamentos:</span> {lancamentos}</div>
+      <div><span>Receitas:</span> {receitas}</div>
+      <div><span>Despesas:</span> {despesas}</div>
+      <div><span>Saldo:</span> {saldo}</div>
     </div>    
   );
 }
