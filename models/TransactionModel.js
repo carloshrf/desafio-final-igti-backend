@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const {Schema, model} = require('mongoose');
 
-let schema = mongoose.Schema({
+let schema = new Schema({
   description: {
     type: String,
     required: true,
@@ -47,6 +47,8 @@ let schema = mongoose.Schema({
   },
 });
 
-const TransactionModel = mongoose.model('transaction', schema);
+schema.index({description: 'text'});
+
+const TransactionModel = model('transaction', schema);
 
 module.exports = TransactionModel;
